@@ -102,3 +102,6 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+glove.6B.300d.txt
+GoogleNews-vectors-negative300.bin
+w2v_glove.6B.300d.txt
