@@ -35,11 +35,11 @@
 
 \title{Reddit Classification}
 
-\author{Uberti-Bona Mar\'{i}n, Lucas Giovanni \\
+\author{Uberti-Bona Mar\'{i}n, L. G. \\
   Department of Data Science \\
   and Knowledge Engineering \\
   Maastricht University \\\And
-  Marrades Furquet, Juli\'{a}n Ram\'{o}n \\
+  Marrades Furquet, J. R. \\
   Department of Data Science \\
   and Knowledge Engineering \\
   Maastricht University}
@@ -112,7 +112,7 @@ due to the fact that some of these files are unbalanced, outdated or contain unn
 	~
 	% SVM (Pre-trained Word2Vec) validation
 	\begin{subfigure}[h!]{0.3\textwidth}
-		\includegraphics[width=\linewidth]{plots_nb.png}
+		\includegraphics[width=\linewidth]{plots_svm2.png}
 		\caption{SVM (Pre-trained Word2Vec)}
 		\label{fig:svm2_val}
 	\end{subfigure}
@@ -147,7 +147,22 @@ due to the fact that some of these files are unbalanced, outdated or contain unn
 \multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}\textbf{ulpt}} & 427                                         & 1621                                       & 1714                                        & 6203                                        \\ \hline
 \end{tabular}
 \caption{Confusion Matrix for SVM (Word2Vec) in ProTips.}
-\label{table:svm_w2v}
+\label{table:svm1_w2v}
+\end{table*}
+
+% SVM (Pre-trained Word2Vec) Confusion Matrix
+\begin{table*}[h!]
+\centering
+\begin{tabular}{c|c|c|c|c|}
+\cline{2-5}
+                                                            & \cellcolor[HTML]{EFEFEF}\textbf{Pred. ilpt} & \cellcolor[HTML]{EFEFEF}\textbf{Pred. lpt} & \cellcolor[HTML]{EFEFEF}\textbf{Pred. slpt} & \cellcolor[HTML]{EFEFEF}\textbf{Pred. ulpt} \\ \hline
+\multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}\textbf{ilpt}} & 2087                                        & 195                                        & 355                                         & 682                                         \\ \hline
+\multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}\textbf{lpt}}  & 147                                         & 6966                                       & 1584                                        & 1283                                        \\ \hline
+\multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}\textbf{slpt}} & 100                                         & 1766                                       & 6063                                        & 2006                                        \\ \hline
+\multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}\textbf{ulpt}} & 394                                         & 1337                                       & 1511                                        & 6729                                        \\ \hline
+\end{tabular}
+\caption{Confusion Matrix for SVM (Pre-trained Word2Vec) in ProTips.}
+\label{table:svm2_w2v}
 \end{table*}
 
 % Final Measures
@@ -161,8 +176,8 @@ due to the fact that some of these files are unbalanced, outdated or contain unn
 \multirow{-2}{*}{\cellcolor[HTML]{EFEFEF}BOW}                                                            & \multirow{-2}{*}{Naive Bayes} & \multirow{-2}{*}{0.58} & \multirow{-2}{*}{-}     & \multirow{-2}{*}{62.70\%} & micro              & 0.63               & 0.63            & 0.63            \\ \hline
 \cellcolor[HTML]{EFEFEF}                                                                                 &                               &                        &                         &                         & macro              & 0.64               & 0.62            & 0.63            \\ \cline{6-9} 
 \multirow{-2}{*}{\cellcolor[HTML]{EFEFEF}Word2Vec}                                                       & \multirow{-2}{*}{SVM}         & \multirow{-2}{*}{-}    & \multirow{-2}{*}{1.78}  & \multirow{-2}{*}{62.12\%} & micro              & 0.62               & 0.62            & 0.62            \\ \hline
-\cellcolor[HTML]{EFEFEF}                                                                                 &                               &                        &                         &                         & macro              &                    &                 &                 \\ \cline{6-9} 
-\multirow{-2}{*}{\cellcolor[HTML]{EFEFEF}\begin{tabular}[c]{@{}c@{}}Pre-trained\\ Word2Vec\end{tabular}} & \multirow{-2}{*}{SVM}         & \multirow{-2}{*}{-}    & \multirow{-2}{*}{3.00}  & \multirow{-2}{*}{65.53\%} & micro              &                    &                 &                 \\ \hline
+\cellcolor[HTML]{EFEFEF}                                                                                 &                               &                        &                         &                         & macro              & 0.68                   & 0.65                & 0.66                \\ \cline{6-9} 
+\multirow{-2}{*}{\cellcolor[HTML]{EFEFEF}\begin{tabular}[c]{@{}c@{}}Pre-trained\\ Word2Vec\end{tabular}} & \multirow{-2}{*}{SVM}         & \multirow{-2}{*}{-}    & \multirow{-2}{*}{4.00}  & \multirow{-2}{*}{65.79\%} & micro              & 0.66                   &               0.66  & 0.66                \\ \hline
 \end{tabular}
 \caption{Performance measures for employed methods in ProTips.}
 \label{table:measures}
