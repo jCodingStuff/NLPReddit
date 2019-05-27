@@ -10,7 +10,7 @@
 
 <!-- Optimization for ML models -->
 **Validation for Naive Bayes (BOW)**<br>
-![opt_nb](report/imgs/plots_nb_inv.png =500x)
+<img src="report/imgs/plots_nb_inv.png" alt="Optimization for NB (BOW)" width="500"/>
 
 **Validation for SVM (Word2Vec)**<br>
 ![opt_svm1](report/imgs/plots_svm1_inv.png "Optimization for SVM (Word2Vec)")
