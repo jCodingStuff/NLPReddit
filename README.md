@@ -10,10 +10,10 @@
 
 <!-- Optimization for ML models -->
 **Validation for Naive Bayes (BOW)**<br>
-<img src="report/imgs/plots_nb_inv.png" alt="Optimization for NB (BOW)" width="500"/>
+<img src="report/imgs/plots_nb_inv.png" alt="Optimization for NB (BOW)" width="700"/>
 
 **Validation for SVM (Word2Vec)**<br>
-![opt_svm1](report/imgs/plots_svm1_inv.png "Optimization for SVM (Word2Vec)")
+<img src="report/imgs/plots_svm1_inv.png" alt="Optimization for SVM (Word2Vec)" width="700"/>
 
 **Validation for SVM (Pre-trained Word2Vec)**<br>
 ![opt_svm2](report/imgs/plots_svm2_inv.png "Optimization for SVM (Pre-trained Word2Vec)")
