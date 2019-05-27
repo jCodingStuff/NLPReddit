@@ -1,2 +1,3 @@
-Inline-style:
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![alt text](report/imgs/plots_nb.png "Optimization for Naive Bayes (BOW)")
+![alt text](report/imgs/plots_svm1.png "Optimization for SVM (Word2Vec)")
+![alt text](report/imgs/plots_svm2.png "Optimization for SVM (Pre-trained Word2Vec)")
