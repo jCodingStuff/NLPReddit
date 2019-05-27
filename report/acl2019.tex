@@ -60,7 +60,30 @@ improve our experience on this social media.
 % Literature Review
 \section{Literature Review}
 \label{sec:literature_review}
-Where is our FASOS slave?
+% Sentiment Analysis on Reddit News Headlines with Python’s Natural Language Toolkit
+Brendan and Koufos show the requirements which must be fulfilled in order to
+retrieve data from the Reddit API. Moreover, they provide an introduction to
+\texttt{praw}, the Reddit API wrapper for python. After, they provide some insights
+regarding sentiment analysis for posts using \texttt{NLTK}.\\
+
+% I Built a Fake News Detector Using Natural Language Processing and Classification
+% Models
+Vasandani \shortcite{vasandani_news} introduces the \texttt{Pushshift.io} API wrapper,
+which depends on \texttt{praw}, but has no request limit, simplifying and accelerating
+data collection. After the retrieval process, she uses binary classification in order to
+classify posts from two different subreddits: \textit{r/TheOnion} and
+\textit{r/nottheonion}. In this paper, we will take her approach further and perform
+classification among several communities.\\
+
+% A Look Into the World of Reddit with NeuralNetworks
+In a more advanced fashion, Ting employs Recurrent Neural Networks to
+perform sentiment analysis in a dataset which contains 1 million Reddit comments.
+With his approach, an outstanding performance is achieved ($92.79\%$).\\
+% I Am A Sequence-to-Sequence Model trained onReddit Data, Ask Me Anything!
+Similarly, Willemsen \shortcite{willemsen_ama} employs RNN, LSTM and Seq2Seq
+models in order to generate replies for comments in the subreddit \textit{r/IAmA}.\\
+Although these two approaches are not directly applicable to this paper, it is interesting
+to observe to what can be used and achieved using data from Reddit.
 
 % Tasks
 \section{Tasks}
@@ -105,6 +128,9 @@ In order to ensure balance in our train, validation and test batches, the same p
 of instances from each community were allocated among them.\\
 Overall, out of the whole set of instances, $4/9$ are used for training, $2/9$ for
 validation and $1/3$ for testing.\\
+% Text cleaning
+Before moving on into ML models, the instances were cleaned to remove punctuation,
+non-alphabetic tokens and some stopwords.\\
 
 % Language representations and classifiers
 For the classification task, two different language representations were employed: bag
@@ -132,7 +158,8 @@ regularization is needed for a good performance on non-training batches.\\
 % Performance on test set
 Once the models were validated, their performance was measured on the test set.\\
 Table \ref{table:measures} shows that the best accuracy is achieved by SVM with
-pre-trained embeddings, while the worst is provided by the custom vectors.
+pre-trained embeddings ($65.79\%$), while the worst is provided by the custom vectors
+($62.12\%$).
 Note that the differences in accuracy, precision, recall and FScore between SVM with
 pre-trained vectors and Naive Bayes with BOW are very small. Moreover, the training
 time needed by Naive Bayes (a few seconds or minutes) is negligible compared to
@@ -168,6 +195,49 @@ is to spend hours of training for a minimal performance boost.
 	\label{fig:models_val}
 \end{figure*}
 
+% Final Measures
+\begin{table*}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+\rowcolor[HTML]{DDDDDD} 
+\textbf{Repr.}                                                                                  & \textbf{Classifier}           & \textbf{Lapl.}       & \textbf{Reg.} & \textbf{Accuracy}       & \textbf{Avg.} & \textbf{Precision} & \textbf{Recall} & \textbf{FScore} \\ \hline
+\cellcolor[HTML]{EFEFEF}                                                                                 &                               &                        &                         &                         & macro              & 0.64               & 0.64            & 0.64            \\ \cline{6-9} 
+\multirow{-2}{*}{\cellcolor[HTML]{EFEFEF}BOW}                                                            & \multirow{-2}{*}{Naive Bayes} & \multirow{-2}{*}{0.58} & \multirow{-2}{*}{-}     & \multirow{-2}{*}{62.70\%} & micro              & 0.63               & 0.63            & 0.63            \\ \hline
+\cellcolor[HTML]{EFEFEF}                                                                                 &                               &                        &                         &                         & macro              & 0.64               & 0.62            & 0.63            \\ \cline{6-9} 
+\multirow{-2}{*}{\cellcolor[HTML]{EFEFEF}Word2Vec}                                                       & \multirow{-2}{*}{SVM}         & \multirow{-2}{*}{-}    & \multirow{-2}{*}{1.78}  & \multirow{-2}{*}{62.12\%} & micro              & 0.62               & 0.62            & 0.62            \\ \hline
+\cellcolor[HTML]{EFEFEF}                                                                                 &                               &                        &                         &                         & macro              & 0.68                   & 0.65                & 0.66                \\ \cline{6-9} 
+\multirow{-2}{*}{\cellcolor[HTML]{EFEFEF}\begin{tabular}[c]{@{}c@{}}Pre-trained\\ Word2Vec\end{tabular}} & \multirow{-2}{*}{SVM}         & \multirow{-2}{*}{-}    & \multirow{-2}{*}{4.00}  & \multirow{-2}{*}{65.79\%} & micro              & 0.66                   &               0.66  & 0.66                \\ \hline
+\end{tabular}
+\caption{Performance measures for employed methods in ProTips.}
+\label{table:measures}
+\end{table*}
+
+% Conclusions
+\section{Conclusions and further work}
+\label{sec:conclusions}
+
+% ProTips
+In this paper an accuracy of $65.79\%$ was achieved for tip classification using SVM
+and $300$D pre-trained word vectors. However, a Naive Bayes model was able to
+achieve $62.70\%$ with a short training time, staying really close to SVM in precision,
+recall and FScore. Thus, further exploration could show how
+to improve the performance of BOW + Naive Bayes, or try to come up with better
+language representations so that more complicated classifiers such as NNs
+or SVMs can achieve higher performance and make the long training time worth it.\\
+In either case, more data and processing power would be needed.
+
+% Bibliography
+\nocite{*}
+\bibliography{acl2019}
+\bibliographystyle{acl_natbib}
+
+% Appendix
+\appendix
+
+\section{Other results}
+\label{sec:other_results}
+% PROTIPS
 % Naive Bayes (BOW) Confusion Matrix
 \begin{table*}[h!]
 \centering
@@ -212,44 +282,5 @@ is to spend hours of training for a minimal performance boost.
 \caption{Confusion Matrix for SVM (Pre-trained Word2Vec) in ProTips.}
 \label{table:svm2_w2v}
 \end{table*}
-
-% Final Measures
-\begin{table*}[h!]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
-\hline
-\rowcolor[HTML]{DDDDDD} 
-\textbf{Repr.}                                                                                  & \textbf{Classifier}           & \textbf{Lapl.}       & \textbf{Reg.} & \textbf{Accuracy}       & \textbf{Avg.} & \textbf{Precision} & \textbf{Recall} & \textbf{FScore} \\ \hline
-\cellcolor[HTML]{EFEFEF}                                                                                 &                               &                        &                         &                         & macro              & 0.64               & 0.64            & 0.64            \\ \cline{6-9} 
-\multirow{-2}{*}{\cellcolor[HTML]{EFEFEF}BOW}                                                            & \multirow{-2}{*}{Naive Bayes} & \multirow{-2}{*}{0.58} & \multirow{-2}{*}{-}     & \multirow{-2}{*}{62.70\%} & micro              & 0.63               & 0.63            & 0.63            \\ \hline
-\cellcolor[HTML]{EFEFEF}                                                                                 &                               &                        &                         &                         & macro              & 0.64               & 0.62            & 0.63            \\ \cline{6-9} 
-\multirow{-2}{*}{\cellcolor[HTML]{EFEFEF}Word2Vec}                                                       & \multirow{-2}{*}{SVM}         & \multirow{-2}{*}{-}    & \multirow{-2}{*}{1.78}  & \multirow{-2}{*}{62.12\%} & micro              & 0.62               & 0.62            & 0.62            \\ \hline
-\cellcolor[HTML]{EFEFEF}                                                                                 &                               &                        &                         &                         & macro              & 0.68                   & 0.65                & 0.66                \\ \cline{6-9} 
-\multirow{-2}{*}{\cellcolor[HTML]{EFEFEF}\begin{tabular}[c]{@{}c@{}}Pre-trained\\ Word2Vec\end{tabular}} & \multirow{-2}{*}{SVM}         & \multirow{-2}{*}{-}    & \multirow{-2}{*}{4.00}  & \multirow{-2}{*}{65.79\%} & micro              & 0.66                   &               0.66  & 0.66                \\ \hline
-\end{tabular}
-\caption{Performance measures for employed methods in ProTips.}
-\label{table:measures}
-\end{table*}
-
-% Conclusions
-\section{Conclusions and further work}
-\label{sec:conclusions}
-
-% Bibliography
-\nocite{*}
-\bibliography{acl2019}
-\bibliographystyle{acl_natbib}
-
-% Appendix
-\appendix
-
-%\section{Tables}
-%\label{sec:tables}
-% PROTIPS
-
-\section{Supplemental Material}
-\label{sec:supplemental}
-Blah blah blah
-
 
 \end{document}
