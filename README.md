@@ -7,6 +7,11 @@
 # 4. Am I The Asshole? #
 
 # 5. ProTips #
+Post retrieval:
+- *r/lifeprotips* (8 years old): 30k
+- *r/shittylifeprotips* (7 years old): 30k
+- *r/unethicallifeprotips* (3 years old): 30k
+- *r/illegallifeprotips* (2 years old): 10k
 
 <!-- Optimization for ML models -->
 **Validation for Naive Bayes (BOW)**<br>
