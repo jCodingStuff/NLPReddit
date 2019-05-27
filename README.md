@@ -24,12 +24,12 @@
 
 <!-- Confusion matrices -->
 **Confusion matrix for Naive Bayes (BOW)**
-![nb_cf](report/imgs/nb_cf_inv.png "Confusion matrix for Naive Bayes (BOW)")
+![nb_cf](report/imgs/nb_cf_inv.png =300x "Confusion matrix for Naive Bayes (BOW)")
 
 **Confusion matrix for SVM (Word2Vec)**
-![svm1_cf](report/imgs/svm1_cf_inv.png "Confusion matrix for SVM (Word2Vec)")
+![svm1_cf](report/imgs/svm1_cf_inv.png =300x "Confusion matrix for SVM (Word2Vec)")
 
 **Confusion matrix for SVM (Pre-trained Word2Vec)**
-![svm2_cf](report/imgs/svm2_cf_inv.png "SVM (Pre-trained Word2Vec)")
+![svm2_cf](report/imgs/svm2_cf_inv.png =300x "SVM (Pre-trained Word2Vec)")
 
 # 6. Conclusions #
