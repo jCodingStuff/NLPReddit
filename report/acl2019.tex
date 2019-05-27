@@ -98,8 +98,31 @@ due to the fact that some of these files are unbalanced, outdated or contain unn
 % Data retrieved
 Using the Reddit API, $100$k posts were retrieved. Out of those, $90$k were distributed
 evenly among \textit{lpt}, \textit{slpt} and \textit{ulpt}. The other $10$k belong to
-\textit{ilpt}. This is due to the fact that the latter subreddit was created two years ago
-while the other three have been active since 2012
+\textit{ilpt}. This is due to the fact that the latter was created two years ago
+while the other three have been active for more time.\\
+% Train / Validation / Test split
+In order to ensure balance in our train, validation and test batches, the same proportion
+of instances from each community were allocated among them.\\
+Overall, out of the whole set of instances, $4/9$ are used for training, $2/9$ for
+validation and $1/3$ for testing.\\
+
+% Language representations and classifiers
+For the classification task, two different language representations were employed: bag
+of words (BOW) and word vectors (Word2Vec).\\
+% BOW
+For BOW, a vocabulary was generated using all retrieved posts. Then, once the features
+were generated, a multinomial Naive Bayes classifier was trained and validated.\\
+Figure \ref{fig:nb_val} shows the changes in performance measures when the Laplace
+smoothing parameter is in range $[0, 1]$. It can be observed that recall raises as
+$\alpha$ increases, while precision does the opposite. Nevertheless, $\alpha = 0.58$
+yields the best accuracy and FScore, balancing precision and recall.\\
+% Word2Vec
+On the other hand, $200$D word vectors were trained with the obtained dataset using
+a context window of $10$ words\footnote{Texts are around 15-20 words long.}.
+Then, embeddings are generated for every submission and fed into an SVM classifier.
+During its validation, it was observed that, while all measures increase as the
+regularization parameter $C$ increases, they stabilize after $C \approx 	1.50$
+
 
 % Validation of models
 \begin{figure*}[h!] % The asterisk means "hey span all the page, so avoid multicols"
