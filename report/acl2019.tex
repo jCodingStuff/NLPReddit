@@ -121,7 +121,24 @@ On the other hand, $200$D word vectors were trained with the obtained dataset us
 a context window of $10$ words\footnote{Texts are around 15-20 words long.}.
 Then, embeddings are generated for every submission and fed into an SVM classifier.
 During its validation, it was observed that, while all measures increase as the
-regularization parameter $C$ increases, they stabilize after $C \approx 	1.50$
+regularization parameter $C$ increases, they stabilize after $C \approx 	1.50$. Even
+with an optimal choice for $C$, the performance is worse than the previous approach.\\
+For this reason, pre-trained $300$D word vectors were used to generate
+higher-dimensional embeddings. When fed into SVM and validated, it was observed that
+the optimum choice for $C$ was $4.00$. An explanation for this fact is that a model with
+a large number of features tends to overfit the training data easily. Therefore, a large
+regularization is needed for a good performance on non-training batches.\\
+
+% Performance on test set
+Once the models were validated, their performance was measured on the test set.\\
+Table \ref{table:measures} shows that the best accuracy is achieved by SVM with
+pre-trained embeddings, while the worst is provided by the custom vectors.
+Note that the differences in accuracy, precision, recall and FScore between SVM with
+pre-trained vectors and Naive Bayes with BOW are very small. Moreover, the training
+time needed by Naive Bayes (a few seconds or minutes) is negligible compared to
+the one needed by SVM with $300D$ vectors ($10$-$12$ hours). Both this facts
+combined show the potential of Naive Bayes and raise doubts regarding how necessary
+is to spend hours of training for a minimal performance boost.
 
 
 % Validation of models
@@ -215,7 +232,7 @@ regularization parameter $C$ increases, they stabilize after $C \approx 	1.50$
 \end{table*}
 
 % Conclusions
-\section{Conclusions}
+\section{Conclusions and further work}
 \label{sec:conclusions}
 
 % Bibliography
