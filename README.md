@@ -19,10 +19,7 @@
 ![alt text](report/imgs/plots_svm2_inv.png "Optimization for SVM (Pre-trained Word2Vec)")
 
 <!-- Performance on test set -->
-|         Repr.         |  Classifier | Lapl. | Reg. | Accuracy | Precision | Recall | FScore |
-|:---------------------:|:-----------:|:-----:|:----:|:--------:|:---------:|:------:|:------:|
-|          BOW          | Naive Bayes |  0.58 |   -  |  62.70%  |    0.64   |  0.64  |  0.64  |
-|        Word2Vec       |     SVM     |   -   | 1.78 |  62.12%  |    0.64   |  0.62  |  0.63  |
-|  Pre-trained Word2Vec |     SVM     |   -   | 4.00 |  65.79%  |    0.68   |  0.65  |  0.66  |
+**Performance on test set**
+![alt text](report/imgs/performance_inv.png "Performance on test set")
 
 # 6. Conclusions #
