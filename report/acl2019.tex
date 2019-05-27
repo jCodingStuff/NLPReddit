@@ -73,10 +73,17 @@ which depends on \texttt{praw}, but has no request limit, simplifying and accele
 data collection. After the retrieval process, she uses binary classification in order to
 classify posts from two different subreddits: \textit{r/TheOnion} and
 \textit{r/nottheonion}. In this paper, we will take her approach further and perform
-classification among several communities.
+classification among several communities.\\
 
 % A Look Into the World of Reddit with NeuralNetworks
+In a more advanced fashion, Ting employs Recurrent Neural Networks to
+perform sentiment analysis in a dataset which contains 1 million Reddit comments.
+With his approach, an outstanding performance is achieved ($92.79\%$).\\
 % I Am A Sequence-to-Sequence Model trained onReddit Data, Ask Me Anything!
+Similarly, Willemsen \shortcite{willemsen_ama} employs RNN, LSTM and Seq2Seq
+models in order to generate replies for comments in the subreddit \textit{r/IAmA}.\\
+Although these two approaches are not directly applicable to this paper, it is interesting
+to observe to what can be used and achieved using data from Reddit.
 
 % Tasks
 \section{Tasks}
