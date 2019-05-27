@@ -68,11 +68,11 @@ Where is our FASOS slave?
 Every community within Reddit is called a subreddit. We decided to focus in the
 following subreddits:
 \begin{enumerate}
-	\item \textbf{r/AmItheAsshole}. In this subreddit users ask other users if, given a
+	\item \textit{r/AmItheAsshole}. In this subreddit users ask other users if, given a
 	specific situation they made a mistake or not. The task would be to determine for a
 	given post if the user did make a mistake or not.
-	\item Tips subreddits: \textbf{r/LifeProTips}, \textbf{r/ShittyLifeProTips},
-	\textbf{r/UnethicalLifeProTips}, \textbf{r/IllegalLifeProTips}\footnote{Hereinafter, to be
+	\item Tips subreddits: \textit{r/LifeProTips}, \textit{r/ShittyLifeProTips},
+	\textit{r/UnethicalLifeProTips}, \textit{r/IllegalLifeProTips}\footnote{Hereinafter, to be
 	called \textit{lpt}, \textit{slpt}, \textit{ulpt} and \textit{ilpt}, respectively.}. With these
 	subreddits we would like to build a \textit{tip classifier}. That is, a model which
 	determines on which subreddit a specific tip should be. 
@@ -95,6 +95,11 @@ due to the fact that some of these files are unbalanced, outdated or contain unn
 % ProTips
 \section{ProTips}
 \label{sec:protips}
+% Data retrieved
+Using the Reddit API, $100$k posts were retrieved. Out of those, $90$k were distributed
+evenly among \textit{lpt}, \textit{slpt} and \textit{ulpt}. 
+
+% Validation of models
 \begin{figure*}[h!] % The asterisk means "hey span all the page, so avoid multicols"
 \centering
 	% Naive Bayes (BOW) validation
