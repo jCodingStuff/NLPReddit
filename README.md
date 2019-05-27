@@ -16,20 +16,20 @@
 <img src="report/imgs/plots_svm1_inv.png" alt="Optimization for SVM (Word2Vec)" width="700"/>
 
 **Validation for SVM (Pre-trained Word2Vec)**<br>
-![opt_svm2](report/imgs/plots_svm2_inv.png "Optimization for SVM (Pre-trained Word2Vec)")
+<img src="report/imgs/plots_svm2_inv.png" alt="Optimization for SVM (Pre-trained Word2Vec)" width="700"/>
 
 <!-- Performance on test set -->
 **Performance on test set**
-![performance](report/imgs/performance_inv.png "Performance on test set")
+<img src="report/imgs/performance_inv.png" alt="Performance on test set" width="700"/>
 
 <!-- Confusion matrices -->
 **Confusion matrix for Naive Bayes (BOW)**
-![nb_cf](report/imgs/nb_cf_inv.png "Confusion matrix for Naive Bayes (BOW)")
+<img src="report/imgs/nb_cf_inv.png" alt="Confusion matrix for Naive Bayes (BOW)" width="400"/>
 
 **Confusion matrix for SVM (Word2Vec)**
-![svm1_cf](report/imgs/svm1_cf_inv.png "Confusion matrix for SVM (Word2Vec)")
+<img src="report/imgs/svm1_cf_inv.png" alt="Confusion matrix for SVM (Word2Vec)" width="400"/>
 
 **Confusion matrix for SVM (Pre-trained Word2Vec)**
-![svm2_cf](report/imgs/svm2_cf_inv.png =300x "SVM (Pre-trained Word2Vec)")
+<img src="report/imgs/svm2_cf_inv.png" alt="SVM (Pre-trained Word2Vec)" width="400"/>
 
 # 6. Conclusions #
