@@ -1,6 +1,8 @@
 # 1. Introduction #
 
 # 2. Tasks #
+1. *r/AmItheAsshole*: YAH, NTA, ESH, NAH, SHP.
+2. *r/LifeProTips*, *r/ShittyLifeProTips*, *r/UnethicalLifeProTips* and *r/IllegalLifeProTips*.
 
 # 3. Reddit API #
 
@@ -16,9 +18,9 @@
 
 <!-- Train / Validation / Test split -->
 **Train / Validation / Test split**
-- Train: $4/9$
-- Validation: $2/9$
-- Test: $1/3$
+- Train: 4/9
+- Validation: 2/9
+- Test: 1/3
 
 ## 5.2. Validation and performance of ML models ##
 **Validation for Naive Bayes (BOW)**<br>
