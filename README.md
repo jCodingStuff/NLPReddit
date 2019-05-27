@@ -7,8 +7,8 @@
 # 4. Am I The Asshole? #
 
 # 5. ProTips #
-<!-- Post retrieval -->
-**Post retrieval:**
+## 5.1. Data Retrieval and split ##
+**Post retrieval**
 - *r/lifeprotips* (8 years old): 30k
 - *r/shittylifeprotips* (7 years old): 30k
 - *r/unethicallifeprotips* (3 years old): 30k
@@ -20,7 +20,7 @@
 - Validation: $2/9$
 - Test: $1/3$
 
-<!-- Optimization for ML models -->
+## 5.2. Validation and performance of ML models ##
 **Validation for Naive Bayes (BOW)**<br>
 <img src="report/imgs/plots_nb_inv.png" alt="Optimization for NB (BOW)" width="700"/>
 
