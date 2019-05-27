@@ -35,11 +35,11 @@
 
 \title{Reddit Classification}
 
-\author{Uberti-Bona Mar\'{i}n, Lucas Giovanni \\
+\author{Uberti-Bona Mar\'{i}n, L. G. \\
   Department of Data Science \\
   and Knowledge Engineering \\
   Maastricht University \\\And
-  Marrades Furquet, Juli\'{a}n Ram\'{o}n \\
+  Marrades Furquet, J. R. \\
   Department of Data Science \\
   and Knowledge Engineering \\
   Maastricht University}
@@ -68,13 +68,14 @@ Where is our FASOS slave?
 Every community within Reddit is called a subreddit. We decided to focus in the
 following subreddits:
 \begin{enumerate}
-	\item \textbf{r/AmItheAsshole}. In this subreddit users ask other users if, given a
+	\item \textit{r/AmItheAsshole}. In this subreddit users ask other users if, given a
 	specific situation they made a mistake or not. The task would be to determine for a
 	given post if the user did make a mistake or not.
-	\item Tips subreddits: \textbf{r/LifeProTips}, \textbf{r/ShittyLifeProTips},
-	\textbf{r/UnethicalLifeProTips}, \textbf{r/IllegalLifeProTips}. With these subreddits
-	we would like to build a \textit{tip classifier}. That is, a model which determines on
-    which subreddit a specific tip should be. 
+	\item Tips subreddits: \textit{r/LifeProTips}, \textit{r/ShittyLifeProTips},
+	\textit{r/UnethicalLifeProTips}, \textit{r/IllegalLifeProTips}\footnote{Hereinafter, to be
+	called \textit{lpt}, \textit{slpt}, \textit{ulpt} and \textit{ilpt}, respectively.}. With these
+	subreddits we would like to build a \textit{tip classifier}. That is, a model which
+	determines on which subreddit a specific tip should be. 
 \end{enumerate}
 
 % Reddit API
@@ -94,6 +95,53 @@ due to the fact that some of these files are unbalanced, outdated or contain unn
 % ProTips
 \section{ProTips}
 \label{sec:protips}
+% Data retrieved
+Using the Reddit API, $100$k posts were retrieved. Out of those, $90$k were distributed
+evenly among \textit{lpt}, \textit{slpt} and \textit{ulpt}. The other $10$k belong to
+\textit{ilpt}. This is due to the fact that the latter was created two years ago
+while the other three have been active for more time.\\
+% Train / Validation / Test split
+In order to ensure balance in our train, validation and test batches, the same proportion
+of instances from each community were allocated among them.\\
+Overall, out of the whole set of instances, $4/9$ are used for training, $2/9$ for
+validation and $1/3$ for testing.\\
+
+% Language representations and classifiers
+For the classification task, two different language representations were employed: bag
+of words (BOW) and word vectors (Word2Vec).\\
+% BOW
+For BOW, a vocabulary was generated using all retrieved posts. Then, once the features
+were generated, a multinomial Naive Bayes classifier was trained and validated.\\
+Figure \ref{fig:nb_val} shows the changes in performance measures when the Laplace
+smoothing parameter is in range $[0, 1]$. It can be observed that recall raises as
+$\alpha$ increases, while precision does the opposite. Nevertheless, $\alpha = 0.58$
+yields the best accuracy and FScore, balancing precision and recall.\\
+% Word2Vec
+On the other hand, $200$D word vectors were trained with the obtained dataset using
+a context window of $10$ words\footnote{Texts are around 15-20 words long.}.
+Then, embeddings are generated for every submission and fed into an SVM classifier.
+During its validation, it was observed that, while all measures increase as the
+regularization parameter $C$ increases, they stabilize after $C \approx 	1.50$. Even
+with an optimal choice for $C$, the performance is worse than the previous approach.\\
+For this reason, pre-trained $300$D word vectors were used to generate
+higher-dimensional embeddings. When fed into SVM and validated, it was observed that
+the optimum choice for $C$ was $4.00$. An explanation for this fact is that a model with
+a large number of features tends to overfit the training data easily. Therefore, a large
+regularization is needed for a good performance on non-training batches.\\
+
+% Performance on test set
+Once the models were validated, their performance was measured on the test set.\\
+Table \ref{table:measures} shows that the best accuracy is achieved by SVM with
+pre-trained embeddings, while the worst is provided by the custom vectors.
+Note that the differences in accuracy, precision, recall and FScore between SVM with
+pre-trained vectors and Naive Bayes with BOW are very small. Moreover, the training
+time needed by Naive Bayes (a few seconds or minutes) is negligible compared to
+the one needed by SVM with $300D$ vectors ($10$-$12$ hours). Both this facts
+combined show the potential of Naive Bayes and raise doubts regarding how necessary
+is to spend hours of training for a minimal performance boost.
+
+
+% Validation of models
 \begin{figure*}[h!] % The asterisk means "hey span all the page, so avoid multicols"
 \centering
 	% Naive Bayes (BOW) validation
@@ -112,7 +160,7 @@ due to the fact that some of these files are unbalanced, outdated or contain unn
 	~
 	% SVM (Pre-trained Word2Vec) validation
 	\begin{subfigure}[h!]{0.3\textwidth}
-		\includegraphics[width=\linewidth]{plots_nb.png}
+		\includegraphics[width=\linewidth]{plots_svm2.png}
 		\caption{SVM (Pre-trained Word2Vec)}
 		\label{fig:svm2_val}
 	\end{subfigure}
@@ -147,7 +195,22 @@ due to the fact that some of these files are unbalanced, outdated or contain unn
 \multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}\textbf{ulpt}} & 427                                         & 1621                                       & 1714                                        & 6203                                        \\ \hline
 \end{tabular}
 \caption{Confusion Matrix for SVM (Word2Vec) in ProTips.}
-\label{table:svm_w2v}
+\label{table:svm1_w2v}
+\end{table*}
+
+% SVM (Pre-trained Word2Vec) Confusion Matrix
+\begin{table*}[h!]
+\centering
+\begin{tabular}{c|c|c|c|c|}
+\cline{2-5}
+                                                            & \cellcolor[HTML]{EFEFEF}\textbf{Pred. ilpt} & \cellcolor[HTML]{EFEFEF}\textbf{Pred. lpt} & \cellcolor[HTML]{EFEFEF}\textbf{Pred. slpt} & \cellcolor[HTML]{EFEFEF}\textbf{Pred. ulpt} \\ \hline
+\multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}\textbf{ilpt}} & 2087                                        & 195                                        & 355                                         & 682                                         \\ \hline
+\multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}\textbf{lpt}}  & 147                                         & 6966                                       & 1584                                        & 1283                                        \\ \hline
+\multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}\textbf{slpt}} & 100                                         & 1766                                       & 6063                                        & 2006                                        \\ \hline
+\multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}\textbf{ulpt}} & 394                                         & 1337                                       & 1511                                        & 6729                                        \\ \hline
+\end{tabular}
+\caption{Confusion Matrix for SVM (Pre-trained Word2Vec) in ProTips.}
+\label{table:svm2_w2v}
 \end{table*}
 
 % Final Measures
@@ -161,15 +224,15 @@ due to the fact that some of these files are unbalanced, outdated or contain unn
 \multirow{-2}{*}{\cellcolor[HTML]{EFEFEF}BOW}                                                            & \multirow{-2}{*}{Naive Bayes} & \multirow{-2}{*}{0.58} & \multirow{-2}{*}{-}     & \multirow{-2}{*}{62.70\%} & micro              & 0.63               & 0.63            & 0.63            \\ \hline
 \cellcolor[HTML]{EFEFEF}                                                                                 &                               &                        &                         &                         & macro              & 0.64               & 0.62            & 0.63            \\ \cline{6-9} 
 \multirow{-2}{*}{\cellcolor[HTML]{EFEFEF}Word2Vec}                                                       & \multirow{-2}{*}{SVM}         & \multirow{-2}{*}{-}    & \multirow{-2}{*}{1.78}  & \multirow{-2}{*}{62.12\%} & micro              & 0.62               & 0.62            & 0.62            \\ \hline
-\cellcolor[HTML]{EFEFEF}                                                                                 &                               &                        &                         &                         & macro              &                    &                 &                 \\ \cline{6-9} 
-\multirow{-2}{*}{\cellcolor[HTML]{EFEFEF}\begin{tabular}[c]{@{}c@{}}Pre-trained\\ Word2Vec\end{tabular}} & \multirow{-2}{*}{SVM}         & \multirow{-2}{*}{-}    & \multirow{-2}{*}{3.00}  & \multirow{-2}{*}{65.53\%} & micro              &                    &                 &                 \\ \hline
+\cellcolor[HTML]{EFEFEF}                                                                                 &                               &                        &                         &                         & macro              & 0.68                   & 0.65                & 0.66                \\ \cline{6-9} 
+\multirow{-2}{*}{\cellcolor[HTML]{EFEFEF}\begin{tabular}[c]{@{}c@{}}Pre-trained\\ Word2Vec\end{tabular}} & \multirow{-2}{*}{SVM}         & \multirow{-2}{*}{-}    & \multirow{-2}{*}{4.00}  & \multirow{-2}{*}{65.79\%} & micro              & 0.66                   &               0.66  & 0.66                \\ \hline
 \end{tabular}
 \caption{Performance measures for employed methods in ProTips.}
 \label{table:measures}
 \end{table*}
 
 % Conclusions
-\section{Conclusions}
+\section{Conclusions and further work}
 \label{sec:conclusions}
 
 % Bibliography
