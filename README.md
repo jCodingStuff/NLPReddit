@@ -7,11 +7,18 @@
 # 4. Am I The Asshole? #
 
 # 5. ProTips #
-Post retrieval:
+<!-- Post retrieval -->
+**Post retrieval:**
 - *r/lifeprotips* (8 years old): 30k
 - *r/shittylifeprotips* (7 years old): 30k
 - *r/unethicallifeprotips* (3 years old): 30k
 - *r/illegallifeprotips* (2 years old): 10k
+
+<!-- Train / Validation / Test split -->
+**Train / Validation / Test split**
+- Train: $4/9$
+- Validation: $2/9$
+- Test: $1/3$
 
 <!-- Optimization for ML models -->
 **Validation for Naive Bayes (BOW)**<br>
