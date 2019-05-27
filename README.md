@@ -46,7 +46,8 @@
 **Confusion matrix for SVM (Pre-trained Word2Vec)**<br>
 <img src="report/imgs/svm2_cf_inv.png" alt="SVM (Pre-trained Word2Vec)" width="400"/>
 
-# 6. Conclusions #
+# 6. Conclusions and further work #
 **ProTips**<br>
-In this paper an accuracy of 65.79% was achieved for tip classification using SVM and 300D pre- trained word vectors. However, a Naive Bayes model was able to achieve 62.70% with a short training time, staying really close to SVM in precision, recall and FScore. Thus, further exploration could show how to improve the performance of BOW + Naive Bayes, or try to come up with better language representations so that more compli- cated classifiers such as NNs or SVMs can achieve higher performance and make the long training time worth it.
-In either case, more data and processing power would be needed.
+1. Best performace is achieved by SVM + Pre-trained word vectors.
+2. Further exploration could show how to improve the performance of BOW + Naive Bayes, or try to come up with better language representations so that more complicated classifiers such as NNs or SVMs can achieve higher performance and make the long training time worth it.
+3. More data and processing power would be needed.
