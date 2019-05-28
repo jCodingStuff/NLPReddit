@@ -21,7 +21,7 @@ For this Pushshift.io was used. It made the process of big scale data retrieval 
 - Validation: 3/16
 - Test: 4/16
 
-## 5.2. Validation and performance of ML models ##
+## 4.1. Validation and performance of ML models ##
 <!-- Performance on test set -->
 **Performance on test set Random forest n=10**<br>
 <img src="report/imgs/forest10.png" alt="Performance on test set" width="700"/>
