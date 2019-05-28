@@ -1,12 +1,33 @@
 # 1. Introduction #
 
 # 2. Tasks #
-1. *r/AmItheAsshole*: YAH, NTA, ESH, NAH, SHP.
+1. *r/AmItheAsshole*: YTA, NTA, ESH, NAH, SHP.
 2. *r/LifeProTips*, *r/ShittyLifeProTips*, *r/UnethicalLifeProTips* and *r/IllegalLifeProTips*.
 
-# 3. Reddit API #
-
+# 3. Reddit content retrieval #
+For this Pushshift.io was used. It made the process of big scale data retrieval simpler and quicker than Reddit's API. We accessed Pushshift using the psaw library.
 # 4. Am I The Asshole? #
+- *r/amitheasshole*: 38k
+  +NTA: 14406
+  +YTA: 6361
+  +NAH: 3662
+  +SHP: 2270
+  +ESH: 2149
+  +Unlabelled: 9442
+  
+<!-- Train / Validation / Test split -->
+**Train / Validation / Test split**
+- Train: 9/16
+- Validation: 3/16
+- Test: 4/16
+
+## 5.2. Validation and performance of ML models ##
+<!-- Performance on test set -->
+**Performance on test set**<br>
+<img src="report/imgs/undersample.png" alt="Performance on test set" width="700"/>
+<img src="report/imgs/oversample.png" alt="Performance on test set" width="700"/>
+
+
 
 # 5. ProTips #
 ## 5.1. Data Retrieval and split ##
