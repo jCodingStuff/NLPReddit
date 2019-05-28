@@ -102,18 +102,83 @@ following subreddits:
 \end{enumerate}
 
 % Reddit API
-\section{Reddit API}
+\section{Reddit content retrieval}
 \label{sec:reddit_api}
-In order to avoid retrieval constraints, it was decided to use \texttt{pushshift.io} and its
-API. Nevertheless, a Reddit developer account was created in order to obtain keys for
-authorization purposes.\\
+In order to avoid retrieval constraints set by the Reddit API at 30 calls per minute it was decided to use \texttt{pushshift.io} and the \texttt{psaw} API wrapper for searching posts or comment via the Pushshift API.
 
-The decision of using the API instead of finding an already existing dataset is 
-due to the fact that some of these files are unbalanced, outdated or contain unnecessary information. Thus, making customizaed requests ensures the collection of balanced and updated data. 
+Since \texttt{pushshift.io} stores data from Reddit already, the retrieval process was quicker. This API also allowed to make more specific requests than reddit's API (per date or upvotes or containing certain words). 
+
+The main issue with not using Reddit's API would've been the possible delay in the data received, but since we weren't going to work on a stream but rather needed some batches the pros outweighed the cons. 
+
 
 % Am I the Asshole?
 \section{Am I the Asshole?}
 \label{sec:aita}
+For this task $38$k posts were extracted from Pushshift using \texttt{psaw}. These corresponded to all posts between the 1st of January, 2019 to the 16th of March, 2019. The main categories for all posts in this subreddit are:
+\begin{itemize}  
+\item YTA: You're the asshole
+\item NTA: Not the asshole (so the other person/people is the asshole)
+\item ESH: Everyone sucks here
+\item NAH: No assholes here
+\item SHP: Shitpost, low effort fake content
+\end{itemize}
+
+To label each post with the corresponding category a mixed approach was used. All posts that had been already categorized by mods was given the corresponding label. For those that weren't a weighed average of the 10 first comments was used to determine the label. Despite this and after some cleaning still 9252 submissions remained uncategorized. These were either categorized with different labels in the subreddit or contained meta information and therefore were not used for the study.
+
+Since the posts couldn't be retrieved by category but only by date, the dataset ended up being quite unbalanced:
+
+\begin{figure*}[h!] % The asterisk means "hey span all the page, so avoid multicols"
+	\center
+	\includegraphics[scale=0.5]{unbalance.png}
+	\caption{Dataset unbalance}
+\end{figure*}
+
+With NTA clearly being the most frequent label.
+
+For this approach we decided to use a simple BOW language models since most titles are quite short. 
+
+The language model was generated with all retrieved posts and then the Naive Bayes classifier was trained and validated on the respective data splits.
+
+However this model gave pretty bad results, with the best F-scores and recall numbers being 0.236 and 0.241 respectively.
+
+Therefore we decided to try out a Random Forest algorithm. Due to processor and time constraints we couldn't optimize the hyperparameters on the validation set so we used number of estimators 10 and 100 and obtained the following results:
+\begin{figure*}[h!] % The asterisk means "hey span all the page, so avoid multicols"
+	% Naive Bayes (BOW) validation
+	\begin{subfigure}[h!]{0.5\textwidth}
+		\includegraphics[width=\linewidth]{forest10.png}
+		\caption{Random forest $n_{estimators} = 10$}
+		\label{fig:nb_val}
+	\end{subfigure}
+	~
+	% SVM (Word2Vec) validation
+	\begin{subfigure}[h!]{0.5\textwidth}
+		\includegraphics[width=\linewidth]{forest100.png}
+		\caption{Random forest $n_{estimators} = 100$}
+		\label{fig:svm1_val}
+	\end{subfigure}
+\end{figure*}
+
+
+With the 10 estimators overperforming 100 all around.
+
+Since the dataset was unbalanced we also tried two approaches to balance it: undersampling and oversampling. These were only applied to training and validation set, leaving the test set untouched.
+
+In all of these experiments we used Multinomial Naive Bayes with a preset alpha of 0.4
+
+For oversampling the ADASYN method from the \texttt{imblearn} library was used on all but the majority class. This balanced the dataset and gave significant improvements in Recall and F-score. At the cost however, of reducing accuracy. 
+\begin{figure*}[h!] % The asterisk means "hey span all the page, so avoid multicols"
+	\center
+	\includegraphics[scale=0.5]{oversample.png}
+	\caption{Oversample statistics}
+\end{figure*}
+
+For undersampling the ClusterCentroids method was used on the majority class, which lead to some improvements over no correction in sampling but underperformed when compared to oversampling. 
+\begin{figure*}[h!] % The asterisk means "hey span all the page, so avoid multicols"
+	\center
+	\includegraphics[scale=0.5]{undersample.png}
+	\caption{Undersample statistics}
+\end{figure*}
+
 
 % ProTips
 \section{ProTips}
@@ -225,6 +290,8 @@ to improve the performance of BOW + Naive Bayes, or try to come up with better
 language representations so that more complicated classifiers such as NNs
 or SVMs can achieve higher performance and make the long training time worth it.\\
 In either case, more data and processing power would be needed.
+
+Similar conclusions can be extracted from the r/amitheasshole analisis. The overall obtained scores are mediocre due to how unbalanced the dataset was. Over and undersamplling combined methods couldn't be used due to computational power issues. It would also be interesting to see what the human baseline for this task is, since extracting for the title who was wrong in a situation turned out to be a trickier task than expected.
 
 % Bibliography
 \nocite{*}
