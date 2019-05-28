@@ -8,12 +8,12 @@
 For this Pushshift.io was used. It made the process of big scale data retrieval simpler and quicker than Reddit's API. We accessed Pushshift using the psaw library.
 # 4. Am I The Asshole? #
 - *r/amitheasshole*: 38k
-  +NTA: 14406
-  +YTA: 6361
-  +NAH: 3662
-  +SHP: 2270
-  +ESH: 2149
-  +Unlabelled: 9442
+  -NTA: 14406
+  -YTA: 6361
+  -NAH: 3662
+  -SHP: 2270
+  -ESH: 2149
+  -Unlabelled: 9442
   
 <!-- Train / Validation / Test split -->
 **Train / Validation / Test split**
@@ -80,3 +80,8 @@ For this Pushshift.io was used. It made the process of big scale data retrieval 
 1. Best performace is achieved by SVM + Pre-trained word vectors.
 2. Further exploration could show how to improve the performance of BOW + Naive Bayes, or try to come up with better language representations so that more complicated classifiers such as NNs or SVMs can achieve higher performance and make the long training time worth it.
 3. More data and processing power would be needed.
+**AmITheAsshole**<br>
+1. An unbalanced dataset heavily reduces your recall and F-score, therefore under or oversampling (ideally both) should be used when facing an unbalanced dataset. However this requires some long waiting time unless you have a very strong processing power.
+2. Ethical judgement based on a title or some sentence is a very complex issue. Therefore it would be interesting to set a human baseline for this task which could make the results found not so bad. 
+3. To improve the performance it could be explored to use the full body of the submission rather than only the title. However this should be done with well-balanced and big datasets since submissions can be very lengthy which could lead to overfitting.
+
