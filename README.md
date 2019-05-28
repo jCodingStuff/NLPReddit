@@ -83,6 +83,6 @@ For this Pushshift.io was used. It made the process of big scale data retrieval 
 
 **AmITheAsshole**<br>
 1. An unbalanced dataset heavily reduces your recall and F-score, therefore under or oversampling (ideally both) should be used when facing an unbalanced dataset. However this requires some long waiting time unless you have a very strong processing power.
-2. Ethical judgement based on a title or some sentence is a very complex issue. Therefore it would be interesting to set a human baseline for this task which could make the results found not so bad. 
+2. Ethical judgement based on a title or some sentence is a very complex task. Therefore it would be interesting to set a human baseline for it. This could make the expectations clearer and put the results of a model in context.
 3. To improve the performance it could be explored to use the full body of the submission rather than only the title. However this should be done with well-balanced and big datasets since submissions can be very lengthy which could lead to overfitting.
 
