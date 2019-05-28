@@ -7,13 +7,15 @@
 # 3. Reddit content retrieval #
 For this Pushshift.io was used. It made the process of big scale data retrieval simpler and quicker than Reddit's API. We accessed Pushshift using the psaw library.
 # 4. Am I The Asshole? #
-- *r/amitheasshole*: 38k
-  -NTA: 14406
-  -YTA: 6361
-  -NAH: 3662
-  -SHP: 2270
-  -ESH: 2149
-  -Unlabelled: 9442
+<!-- Label distribution -->
+**Label distribution**
+*r/amitheasshole*: 38k
+- NTA: 14406
+- YTA: 6361
+- NAH: 3662
+- SHP: 2270
+- ESH: 2149
+- Unlabelled: 9442
   
 <!-- Train / Validation / Test split -->
 **Train / Validation / Test split**
