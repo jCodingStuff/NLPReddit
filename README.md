@@ -25,10 +25,13 @@ For this Pushshift.io was used. It made the process of big scale data retrieval 
 <!-- Performance on test set -->
 **Performance on test set Random forest n=10**<br>
 <img src="report/imgs/forest10.png" alt="Performance on test set" width="700"/>
+
 **Performance on test set Random forest n=100**<br>
 <img src="report/imgs/forest100.png" alt="Performance on test set" width="700"/>
+
 **Performance on test set Undersampling**<br>
 <img src="report/imgs/undersample.png" alt="Performance on test set" width="700"/>
+
 **Performance on test set Oversampling**<br>
 <img src="report/imgs/oversample.png" alt="Performance on test set" width="700"/>
 
