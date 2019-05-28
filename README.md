@@ -8,7 +8,7 @@
 For this Pushshift.io was used. It made the process of big scale data retrieval simpler and quicker than Reddit's API. We accessed Pushshift using the psaw library.
 # 4. Am I The Asshole? #
 <!-- Label distribution -->
-**Label distribution**
+**Label distribution**<br>
 *r/amitheasshole*: 38k
 - NTA: 14406
 - YTA: 6361
